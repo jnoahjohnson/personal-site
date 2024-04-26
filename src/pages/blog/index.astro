@@ -4,12 +4,11 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
 import BaseBody from "../../components/BaseBody.astro";
 import PostCard from "../../components/PostCard.astro";
 
 const posts = (await getCollection("blog")).sort(
-  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
@@ -21,6 +20,14 @@ const posts = (await getCollection("blog")).sort(
   <BaseBody>
     <Header />
     <main>
+      <header class="pt-8 pb-12">
+        <h1 class="text-3xl font-bold font-serif">Blog</h1>
+        <p class="text-neutral-700 text-lg">
+          For now this is all of the articles that I am adding. I may start
+          breaking them up depending on the content and categories I continue to
+          write.
+        </p>
+      </header>
       <section>
         <ul class="flex flex-col gap-6">
           {posts.map((post) => <PostCard post={post} />)}
