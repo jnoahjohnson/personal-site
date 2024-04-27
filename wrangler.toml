@@ -1,5 +1,5 @@
 name = "personal"
-compatibility_date = "2022-05-10"
+compatibility_date = "2024-04-20"
 pages_build_output_dir = "./dist"
 
 [ai]
