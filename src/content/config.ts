@@ -13,4 +13,18 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+const photo = defineCollection({
+  type: "data",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    source: z.string(),
+    alt: z.string(),
+    date: z.coerce.date(),
+    location: z.string(),
+    tags: z.array(z.string()),
+    device: z.string(),
+  }),
+});
+
+export const collections = { blog, photo };

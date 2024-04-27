@@ -1,0 +1,45 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { getCollection } from "astro:content";
+import BaseBody from "../../components/BaseBody.astro";
+
+const images = (await getCollection("photo")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <BaseBody>
+    <Header />
+    <main>
+      <header class="pt-8 pb-12">
+        <h1 class="text-3xl font-bold font-serif">Images</h1>
+        <p class="text-neutral-700 text-lg">Some images I am taking.</p>
+      </header>
+      <section>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {
+            images.map(({ data: image }) => (
+              <div class="flex flex-col gap-1">
+                <img
+                  src={image.source}
+                  alt={image.alt}
+                  class="w-full h-auto rounded-lg"
+                />
+                <p class="text-neutral-700 text-sm">{image.title}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </BaseBody>
+</html>
