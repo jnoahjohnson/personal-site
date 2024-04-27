@@ -1,10 +1,6 @@
 name = "personal"
-main = "dist/_worker.js/index.js"
 compatibility_date = "2022-05-10"
 pages_build_output_dir = "./dist"
-
-[site]
-bucket = './dist'
 
 [ai]
 binding = "AI"
