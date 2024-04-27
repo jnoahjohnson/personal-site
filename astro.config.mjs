@@ -11,5 +11,12 @@ export default defineConfig({
   site: "https://noahjohnson.dev",
   integrations: [mdx(), sitemap(), tailwind(), react()],
   output: "hybrid",
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: "cloudflare",
+    platformProxy: {
+      enabled: true,
+      configPath: "wrangler.toml",
+      persist: "./.cache/wrangler/v3",
+    },
+  }),
 });
