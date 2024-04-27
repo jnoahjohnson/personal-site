@@ -11,12 +11,10 @@ await db
   )
   .run();
 
-const { results } = await db
+await db
   .prepare("INSERT INTO notes (text) VALUES (?) RETURNING *")
   .bind("my first note!")
   .run();
-
-console.log(results);
 ---
 
 <Layout
